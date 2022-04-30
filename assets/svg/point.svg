@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>point</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-409.000000, -175.000000)">
+            <g id="point" transform="translate(409.000000, 175.000000)">
+                <rect id="Rectangle" x="0" y="0" width="64" height="64"></rect>
+                <path d="M32.0753498,42.1441684 C26.4390655,42.1441684 21.8646898,37.5697927 21.8646898,31.9335084 C21.8646898,26.297224 26.4390655,21.7228483 32.0753498,21.7228483 C37.7116342,21.7228483 42.2860099,26.297224 42.2860099,31.9335084 C42.2724808,37.5697927 37.7117618,42.1441684 32.0753498,42.1441684 Z" id="Path" stroke="#000000" stroke-width="2"></path>
+            </g>
+        </g>
+    </g>
+</svg>
