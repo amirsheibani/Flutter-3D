@@ -58,6 +58,7 @@ class WebGL{
     uniform mat4 uProjectionMatrix;
     void main(void) {
         gl_Position = uProjectionMatrix * uModelViewMatrix * vec4(aVertexPosition, 1.0);
+        // gl_Position = vec4(aVertexPosition, 1.0);
         // vColor = vec4(colors, 1.0);
         vColor = vec4(1.0,1.0,1.0, 1.0);
         gl_PointSize = 1.0;
@@ -157,23 +158,23 @@ class WebGL{
   loadNeedDefault(){
     printLog('loadNeedDefault');
     positions ??= [];
-    Map<int,List<double>> c = {
-      0: [39/255, 77/255, 82/255],
-      1: [199/255, 162/255, 166/255],
-      2: [129/255, 139/255, 112/255],
-      3: [96/255, 78/255, 60/255],
-      4: [140/255, 159/255, 183/255],
-      5: [121/255, 104/255, 128/255],
-    };
+    // Map<int,List<double>> c = {
+    //   0: [39/255, 77/255, 82/255],
+    //   1: [199/255, 162/255, 166/255],
+    //   2: [129/255, 139/255, 112/255],
+    //   3: [96/255, 78/255, 60/255],
+    //   4: [140/255, 159/255, 183/255],
+    //   5: [121/255, 104/255, 128/255],
+    // };
     colors = [];
-    for (var face = 0; face < 6; face++) {
-      List<double>? faceColor = c[face];
-      for (var vertex = 0; vertex < 6; vertex++) {
-        colors!.add(faceColor![0]);
-        colors!.add(faceColor[1]);
-        colors!.add(faceColor[2]);
-      }
-    }
+    // for (var face = 0; face < 6; face++) {
+    //   // List<double>? faceColor = c[face];
+    //   for (var vertex = 0; vertex < 6; vertex++) {
+    //     colors!.add(faceColor![0]);
+    //     colors!.add(faceColor[1]);
+    //     colors!.add(faceColor[2]);
+    //   }
+    // }
     vertexNormals ??= [];
     textureCoordinates ??= [];
 
@@ -187,19 +188,18 @@ class WebGL{
     fgl.gl.attachShader(shaderProgram, vertexShader);
     fgl.gl.attachShader(shaderProgram, fragmentShader);
     fgl.gl.linkProgram(shaderProgram);
-    if (!(fgl.gl.getProgramParameter(shaderProgram, fgl.gl.LINK_STATUS) == 1)) {
+    if (!(fgl.gl.getProgramParameter(shaderProgram, fgl.gl.LINK_STATUS))) {
       printLog('Unable to initialize the shader program: ' + fgl.gl.getProgramInfoLog(shaderProgram));
       return null;
     }
     fgl.gl.useProgram(shaderProgram);
-    printLog('shaderProgram success');
   }
   loadShader(type, source) {
     printLog('loadShader');
     var shader = fgl.gl.createShader(type);
     fgl.gl.shaderSource(shader, source);
     fgl.gl.compileShader(shader);
-    if (!(fgl.gl.getShaderParameter(shader, fgl.gl.COMPILE_STATUS) == 1)) {
+    if (!(fgl.gl.getShaderParameter(shader, fgl.gl.COMPILE_STATUS))) {
       printLog('An error occurred compiling the shaders: ' + fgl.gl.getShaderInfoLog(shader));
       fgl.gl.deleteShader(shader);
       return null;
@@ -208,21 +208,21 @@ class WebGL{
   }
   initBuffers() {
     printLog('initBuffers');
-    var positionData = Float64List.fromList(positions!);
+    var positionData = Float32List.fromList(positions!);
     positionBuffer = fgl.gl.createBuffer();
     fgl.gl.enableVertexAttribArray(vertexPosition);
     fgl.gl.bindBuffer(fgl.gl.ARRAY_BUFFER, positionBuffer);
     fgl.gl.bufferData(fgl.gl.ARRAY_BUFFER,positionData.length, positionData, fgl.gl.STATIC_DRAW);
-    fgl.gl.vertexAttribPointer(vertexPosition, 3, fgl.gl.FLOAT, false, Float64List.bytesPerElement * 3, 0);
+    fgl.gl.vertexAttribPointer(vertexPosition, 3, fgl.gl.FLOAT, false, 0, 0);
     printLog('positionBuffer success');
 
-    var colorsVerticesData  = Float64List.fromList(colors!);
-    colorBuffer = fgl.gl.createBuffer();
-    fgl.gl.enableVertexAttribArray(vertexColors);
-    fgl.gl.bindBuffer(fgl.gl.ARRAY_BUFFER, colorBuffer);
-    fgl.gl.bufferData(fgl.gl.ARRAY_BUFFER,colorsVerticesData.length, colorsVerticesData, fgl.gl.STATIC_DRAW);
-    fgl.gl.vertexAttribPointer(vertexColors, 3, fgl.gl.FLOAT, false, Float64List.bytesPerElement * 3, 0);
-    printLog('colorBuffer success');
+    // var colorsVerticesData  = Float64List.fromList(colors!);
+    // colorBuffer = fgl.gl.createBuffer();
+    // fgl.gl.enableVertexAttribArray(vertexColors);
+    // fgl.gl.bindBuffer(fgl.gl.ARRAY_BUFFER, colorBuffer);
+    // fgl.gl.bufferData(fgl.gl.ARRAY_BUFFER,colorsVerticesData.length, colorsVerticesData, fgl.gl.STATIC_DRAW);
+    // fgl.gl.vertexAttribPointer(vertexColors, 3, fgl.gl.FLOAT, false, Float64List.bytesPerElement * 3, 0);
+    // printLog('colorBuffer success');
 
     // var vertexNormalsData = Float32Array(vertexNormals);
     // var normalBuffer = fgl.gl.createBuffer();

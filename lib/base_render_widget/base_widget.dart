@@ -83,26 +83,26 @@ class _BaseWidgetState extends State<BaseWidget> {
                                 // objectModel.loadOBJFileFromAsset('assets/test.obj').then((value){
                                 debugPrint('start file: ${DateTime.now()}');
                                 //TODO OBJ file
-                                // objectModel.loadFileFromAsset('assets/skull.obj').then((value) {
-                                //   debugPrint('load file: ${DateTime.now()}');
-                                //   // debugPrint('ld: ${objectModel.tempVertices.length}');
-                                //   wg = WebGL(canvasGL.flutterGlPlugin, positions: objectModel.tempVertices);
-                                //   wg!.render();
-                                //   // Timer.periodic(const Duration(milliseconds: 10), (timer) {
-                                //   //
-                                //   // });
-                                // });
-                                objectModelSTL.loadFileFromAsset('assets/sphericon.stl').then((value) {
+                                objectModel.loadFileFromAsset('assets/skull.obj').then((value) {
                                   debugPrint('load file: ${DateTime.now()}');
-                                  debugPrint('ld: ${objectModelSTL.outVertices.length}');
-                                  wg = WebGL(canvasGL.flutterGlPlugin, positions: objectModelSTL.outVertices);
+                                  // debugPrint('ld: ${objectModel.tempVertices.length}');
+                                  wg = WebGL(canvasGL.flutterGlPlugin, positions: objectModel.tempVertices);
                                   wg!.render();
                                   // Timer.periodic(const Duration(milliseconds: 10), (timer) {
                                   //
                                   // });
                                 });
-                                // Future.delayed(const Duration(milliseconds: 500), () async {
+                                // objectModelSTL.loadFileFromAsset('assets/sphericon.stl').then((value) {
+                                //   debugPrint('load file: ${DateTime.now()}');
+                                //   debugPrint('ld: ${objectModelSTL.outVertices.length}');
+                                //   wg = WebGL(canvasGL.flutterGlPlugin, positions: objectModelSTL.outVertices);
+                                //   wg!.render();
+                                //   // Timer.periodic(const Duration(milliseconds: 10), (timer) {
+                                //   //
+                                //   // });
                                 // });
+                                Future.delayed(const Duration(milliseconds: 500), () async {
+                                });
                                 if (kIsWeb) {
                                   return GestureDetector(
                                     onTapDown: (TapDownDetails details) {
